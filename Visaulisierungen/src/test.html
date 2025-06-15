@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Bundestagswahl Dashboard</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.1/papaparse.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .chart-container {
+            margin-bottom: 40px;
+        }
+        svg {
+            background-color: white;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bundestagswahl Dashboard</h1>
+
+    <div class="chart-container">
+        <h2>Wählerprofil (nach Bundesland)</h2>
+        <div id="chart1"></div>
+    </div>
+
+    <script>
+        Papa.parse("data/kerg2.csv", {
+            download: true,
+            header: true,
+            delimiter: ";",
+            complete: function(results) {
+                const data = results.data.filter(row => row.Bundesland && row.Stimmenanteil);
+
+                // Wähle ein Bundesland zum Beispiel "Thüringen"
+                const land = "Thüringen";
+                const filtered = data.filter(d => d.Bundesland === land);
+
+                // Parse Stimmenanteil
+                filtered.forEach(d => d.Stimmenanteil = parseFloat(d.Stimmenanteil.replace(",", ".")));
+
+                renderChart(filtered);
+            },
+            error: function(err) {
+                console.error("Fehler beim CSV-Import:", err);
+            }
+        });
+
+        function renderChart(data) {
+            const width = 800;
+            const height = 400;
+            const margin = { top: 40, right: 20, bottom: 80, left: 60 };
+
+            const svg = d3.select("#chart1")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height);
+
+            const x = d3.scaleBand()
+                .domain(data.map(d => d.Partei))
+                .range([margin.left, width - margin.right])
+                .padding(0.1);
+
+            const y = d3.scaleLinear()
+                .domain([0, d3.max(data, d => d.Stimmenanteil)])
+                .nice()
+                .range([height - margin.bottom, margin.top]);
+
+            svg.append("g")
+                .attr("transform", `translate(0,${height - margin.bottom})`)
+                .call(d3.axisBottom(x))
+                .selectAll("text")
+                .attr("transform", "rotate(-45)")
+                .style("text-anchor", "end");
+
+            svg.append("g")
+                .attr("transform", `translate(${margin.left},0)`)
+                .call(d3.axisLeft(y));
+
+            svg.selectAll(".bar")
+                .data(data)
+                .enter()
+                .append("rect")
+                .attr("class", "bar")
+                .attr("x", d => x(d.Partei))
+                .attr("y", d => y(d.Stimmenanteil))
+                .attr("width", x.bandwidth())
+                .attr("height", d => height - margin.bottom - y(d.Stimmenanteil))
+                .attr("fill", "steelblue");
+        }
+    </script>
+</body>
+</html>
