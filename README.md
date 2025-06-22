@@ -1,25 +1,35 @@
-# Visualisierungen
-Bundestagswahl 2025 – Interaktive Wahlanalyse
-Visualisierung der Bundestagswahl 2025 mit Fokus auf drei Perspektiven:
+# Bundestagswahl 2025 – Interaktive Analyse
 
-Bundesland: Vergleich der Wahlergebnisse auf Landesebene
+Eine datengetriebene Webanwendung zur Visualisierung von Wahlergebnissen und demografischen Mustern der Bundestagswahl 2025.
 
-Wahlkreis: Analyse der Zweitstimmenverteilung pro Wahlkreis
+## Projektstruktur
 
-Altersgruppe: Hochrechnung der Wahlergebnisse auf Basis der Altersstruktur
+### Kern-Dateien
+| Datei          | Funktion                                                                 |
+|----------------|--------------------------------------------------------------------------|
+| `index.html`   | Haupt-HTML-Struktur mit 3 Sektionen: Karte, Wählerprofile, Zeitverlauf  |
+| `style.css`    | Globales Styling mit responsive Design, Farbverläufen und Animationen   |
+| `main.js`      | Datenlade-Logik mit PapaParse und Initialisierung aller Module          |
 
-Features
-Interaktive Filter (Bundesland, Wahlkreis, Alter)
+### Visualisierungsmodule
+| Modul          | Funktion                                                                 |
+|----------------|--------------------------------------------------------------------------|
+| `map.js`       | **Interaktive Deutschlandkarte** mit Polarisierungsindex pro Bundesland  |
+| `profile.js`   | **Wählerprofile** mit Demografie-Dropdowns und Balkendiagrammen         |
+| `timeline.js`  | **Zeitreihen-Analyse** mit Parteientwicklung (2017-2025)                |
 
-Balkendiagramme zur Prozentverteilung nach Partei
+### Datenverzeichnis (`/data`)
+| Datei                          | Inhalt                                       |
+|--------------------------------|----------------------------------------------|
+| `germany_states.geojson`       | Geografische Grenzen der Bundesländer        |
+| `kerg2.csv`                    | Wahlergebnisse 2025 (Landes- und Kreisebene) |
+| `kerg2_2021.csv`               | Wahlergebnisse 2021 (historischer Vergleich) |
+| `btw2025_strukturdaten.csv`    | Demografiedaten (Altersgruppen, Bevölkerung)|
 
-Datenquelle: kerg.csv, kerg2.csv, strukturdaten.csv
 
-Umsetzung mit D3.js, Chart.js und Vanilla JavaScript
+## Datenquellen
+Wahlergebnisse: Bundeswahlleiter (Datenlizenz Deutschland 2.0)
 
-Ziel
-Datenbasierte, verständliche Einblicke in die politischen Präferenzen verschiedener Bevölkerungsgruppen und Regionen.
+Geodaten: GeoBasis-DE / BKG 2025
 
-Hinweis
-Die Altersgruppenanalyse basiert auf Bevölkerungsanteilen, nicht auf echten Wahlbefragungen.
-
+Bevölkerungsdaten: Statistisches Bundesamt
