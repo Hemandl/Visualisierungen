@@ -24,6 +24,7 @@ Eine datengetriebene Webanwendung zur Visualisierung von Wahlergebnissen und dem
 | `germany_states.geojson`       | Geografische Grenzen der Bundesländer        |
 | `kerg2.csv`                    | Wahlergebnisse 2025 (Landes- und Kreisebene) |
 | `kerg2_2021.csv`               | Wahlergebnisse 2021 (historischer Vergleich) |
+| `kerg2_2017.csv`               | Wahlergebnisse 2017 (historischer Vergleich) |
 | `btw2025_strukturdaten.csv`    | Demografiedaten (Altersgruppen, Bevölkerung)|
 
 
