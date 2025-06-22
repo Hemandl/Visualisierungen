@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bundestagswahl 2025 – Interaktive Analyse</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Bundestagswahl 2025 – Interaktive Analyse</h1>
+  </header>
+  <main>
+    <section id="map-section">
+      <h2>Polarisierung nach Bundesland</h2>
+      <p>Der Polarisierungsindex zeigt, wie stark die politische Landschaft eines Bundeslandes zwischen den Parteien polarisiert ist – je höher der Wert, desto größer die Gegensätze.</p>
+      <div id="map"></div>
+    </section>
+    <section id="profile-section">
+      <h2>Wählerprofil <span id="selected-state"></span></h2>
+      <div id="profile-dropdown" style="margin-bottom: 20px;"></div>
+      <div id="profile-chart"></div>
+    </section>
+    <section id="timeline-section">
+      <h2>Stimmenentwicklung über Zeit</h2>
+      <div id="timeline-dropdown" style="margin-bottom: 20px;"></div>
+      <div id="timeline-chart"></div>
+    </section>
+  </main>
+  <footer>
+    <p>© 2025 Die Bundeswahlleiterin – Datenlizenz Deutschland – Namensnennung – Version 2.0</p>
+  </footer>
+
+  <!-- p5.js Bibliothek -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+  
+  <!-- PapaParse für CSV-Daten -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.1/papaparse.min.js"></script>
+
+  <!-- Eigene Skripte -->
+  <script src="js/main.js" defer></script>
+  <script src="js/map.js" defer></script>
+  <script src="js/profile.js" defer></script>
+  <script src="js/timeline.js" defer></script>
+</body>
+</html>
